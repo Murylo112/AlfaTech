@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crie sua Conta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css"> <!-- Seu arquivo CSS -->
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Meu App</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="cadastro-section">
+            <h2>Crie sua Conta</h2>
+            <p>Preencha os campos abaixo para se registrar.</p>
+            <form id="form-contato" method="POST" action="#"> <!-- Action para onde o form envia os dados -->
+                <div>
+                    <label for="nome" style="display: block; margin-bottom: 5px; font-weight: bold;">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                </div>
+                <div>
+                    <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+                </div>
+                <div>
+                    <label for="senha" style="display: block; margin-bottom: 5px; font-weight: bold;">Senha:</label>
+                    <input type="password" id="senha" name="senha" placeholder="Crie uma senha forte" required>
+                </div>
+                <div>
+                    <label for="confirmar-senha" style="display: block; margin-bottom: 5px; font-weight: bold;">Confirmar Senha:</label>
+                    <input type="password" id="confirmar-senha" name="confirmar_senha" placeholder="Confirme sua senha" required>
+                </div>
+                <button type="submit">Cadastrar</button>
+                <p style="text-align: center; margin-top: 15px;">
+                    Já tem uma conta? <a href="login.html" style="color: #3498db; text-decoration: none;">Faça Login</a>
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 Meu App. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../js/cadastro.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Meu App</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="cadastro.html">Cadastre-se</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="recuperacao-section">
+            <h2>Recuperar sua Conta</h2>
+            <p>Não se preocupe! Digite seu endereço de e-mail abaixo e enviaremos um link para você redefinir sua senha.</p>
+            <form id="form-contato" method="POST" action="#"> <!-- Action para processar a recuperação -->
+                <div>
+                    <label for="email-recuperacao" style="display: block; margin-bottom: 5px; font-weight: bold;">Email:</label>
+                    <input type="email" id="email-recuperacao" name="email_recuperacao" placeholder="Digite seu email de cadastro" required>
+                </div>
+                <button type="submit">Enviar Link de Recuperação</button>
+                <p style="text-align: center; margin-top: 15px;">
+                    Lembrou sua senha? <a href="login.html" style="color: #3498db; text-decoration: none;">Faça Login</a>
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 Meu App. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Loja de Informática</title>
+    <!-- Certifique-se de que o caminho para o style.css está correto -->
+    <link rel="stylesheet" href="../style.css"> 
+</head>
+<body>
+    
+    <header>
+        <!-- O caminho da imagem deve estar correto em relação à pasta do seu projeto.
+             Este caminho assume que a pasta 'IMAGEM' está na raiz do projeto. -->
+        <img src="../../IMAGEM/LOGO ALFATECH 3.png" alt="Logo da Alfatech">
+    </header>
+
+    <main>
+        <div class="login-container">
+            <form action="/login" method="POST">
+                <h2>Login do Painel</h2>
+
+                <div id="message-area" class="error"></div>
+                
+                <div class="input-group">
+                    <!-- ATENÇÃO: Mudado para 'email' para bater com o nosso servidor (app.js) -->
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <button type="submit">Entrar</button> 
+
+                <!-- CORRIGIDO: Link de cadastro fora do 'input-group' para melhor estrutura -->
+                <p class="cadastro-link">
+                    Ainda não tem conta? <a href="cadastro.html">Crie uma aqui.</a>
+                </p>
+            </form>
+        </div>
+    </main>
+    
+    <script>
+        // Script para mostrar mensagens de erro/sucesso vindas do servidor via URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const messageDiv = document.getElementById('message-area');
+
+        if (urlParams.get('error')) {
+            messageDiv.innerText = 'Email ou senha inválidos!';
+        } else if (urlParams.get('success') === 'registered') {
+            messageDiv.innerText = 'Cadastro realizado com sucesso! Faça o login.';
+            messageDiv.style.color = 'green';
+        }
+    </script>
+
+    <script src="../js/login.js"></script>
+</body>
+</html>

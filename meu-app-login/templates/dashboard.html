@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Loja</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="dashboard-header">
+        <h1>Dashboard da Loja</h1>
+        <div class="user-info">
+            <span id="welcome-message">Carregando...</span>
+            <a href="/logout">Sair</a>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        Seja bem Vindo a Alfatech
+    </main>
+
+    <script>
+        // Pega o nome do usuário logado e exibe na tela
+        fetch('/me')
+            .then(res => res.json())
+            .then(data => {
+                if(data.username) {
+                    document.getElementById('welcome-message').innerText = `Bem-vindo(a), ${data.username}!`;
+                }
+            });
+    </script>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

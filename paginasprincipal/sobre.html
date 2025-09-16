@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlfaTech</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="icon" href="IMAGEM/LOGO SITE.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="../IMAGEM/LOGO ALFATECH 3.png" alt="logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="produto.html">Produtos</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contato.html">Contato</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="sobre" class="section-sobre">
+            <h2>Sobre Nós</h2>
+            <p>A [AlfaTech] é especializada em soluções de tecnologia,
+                 oferecendo produtos e serviços que atendem tanto usuários domésticos quanto empresas.
+                 Trabalhamos com computadores, notebooks, periféricos, acessórios e peças de reposição de diversas marcas reconhecidas no mercado.
+                  Além disso, contamos com serviços de manutenção, upgrades e suporte técnico especializado, 
+                  garantindo que nossos clientes tenham sempre equipamentos modernos e em perfeito funcionamento.
+                  Nosso compromisso é unir qualidade, confiança e preços acessíveis para que você encontre tudo o que precisa em informática em um
+                 só lugar.</p>
+        </section>
+
+<div class="container-mapa-e-paineis">
+
+    <div class="coluna-mapa">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d540.1004399284724!2d-53.513292226533146!3d-24.403968290658526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f3a9691bf407c5%3A0x33e1c3c79fb284a2!2sAlfa%20Tech%20Inform%C3%A1tica!5e0!3m2!1spt-BR!2sbr!4v1756743879741!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="container-paineis-sociais">
+
+        <div class="painel-social instagram">
+            <h3>Siga-nos no Instagram</h3>
+            <p>Aponte a câmera ou clique no botão.</p>
+            <img src="../IMAGEM/qrinsta.jpg" alt="QR Code para o Instagram da Alfatech" class="social-qrcode">
+            <a href="https://www.instagram.com/alfatech.assis" target="_blank" class="social-follow-button">
+                @alfatech.informatica
+            </a>
+        </div>
+
+        <div class="painel-social facebook">
+            <h3>Curta no Facebook</h3>
+            <p>Aponte a câmera ou clique no botão.</p>
+            <img src="../IMAGEM/qrcode_800.png" alt="QR Code para o Facebook da Alfatech" class="social-qrcode">
+            <a href="https://www.facebook.com/share/1EH6rsfjE5/" target="_blank" class="social-follow-button">
+                /alfatech.informatica
+            </a>
+        </div>
+
+    </div>
+</div>
+           
+        </main>
+    <footer>
+            <p>&copy; 2025 Loja de Informática. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+  .whatsapp-side-menu {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+  }
+
+  .menu-tab {
+    background-color: #25D366;
+    color: white;
+    padding: 15px 12px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    border-radius: 8px 0 0 8px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: bold;
+    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .menu-panel {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -350px;
+    width: 300px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: right 0.4s ease-in-out;
+    padding: 25px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: sans-serif;
+    border-radius: 12px; 
+  }
+
+  .menu-panel.open {
+    right: 80px;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: #888;
+    cursor: pointer;
+  }
+  .close-btn:hover {
+    color: #333;
+  }
+
+  .menu-panel img {
+    width: 80%;
+    max-width: 200px;
+    margin-top: 15px;
+    border: 5px solid #fff;
+    border-radius: 8px;
+  }
+
+  .menu-panel p {
+    margin: 20px 0;
+    color: #555;
+    font-size: 15px;
+  }
+
+  .whatsapp-link-button {
+    display: inline-block;
+    background-color: #25D366;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  .whatsapp-link-button:hover {
+    background-color: #128C7E;
+  }
+</style>
+
+<div class="whatsapp-side-menu">
+  
+  <div class="menu-tab" id="open-whatsapp-menu">
+    <i class="fa fa-whatsapp" style="font-size: 24px;"></i>
+    <span>WhatsApp</span>
+  </div>
+
+  <div class="menu-panel" id="whatsapp-panel">
+    <span class="close-btn" id="close-whatsapp-menu">&times;</span>
+    
+    <h4>Contato via WhatsApp</h4>
+    
+    <img src="../IMAGEM/qrcode (1).png" alt="QR Code para contato no WhatsApp">
+    
+    <p>Aponte a câmera do seu celular para o QR Code ou clique no botão abaixo para iniciar a conversa.</p>
+    
+    <a href="https://www.contate.me/5544999947917" target="_blank" class="whatsapp-link-button">
+      Conversar Agora
+    </a>
+  </div>
+</div>
+
+<script>
+  const openButton = document.getElementById('open-whatsapp-menu');
+  const closeButton = document.getElementById('close-whatsapp-menu');
+  const panel = document.getElementById('whatsapp-panel');
+
+  openButton.addEventListener('click', function() {
+    panel.classList.toggle('open');
+  });
+
+  closeButton.addEventListener('click', function() {
+    panel.classList.remove('open');
+  });
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</body>
+</html>
