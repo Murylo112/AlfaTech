@@ -1,34 +1,38 @@
 // login.js
-    const form = document.querySelector('.login-container form');
+    const form = document.querySelector('.form-container form');
     const messageArea = document.getElementById('message-area');
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+    if (form) {
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
 
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-        try {
-            const response = await fetch('http://localhost:3000/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email, senha: password }) // 'senha' como o backend espera
-            });
+            try {
+                const response = await fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, senha: password }) // 'senha' como o backend espera
+                });
 
-            const result = await response.json();
+                const result = await response.json();
 
-            if (!response.ok) {
-                throw new Error(result.error || 'Erro ao fazer login.');
+                if (!response.ok) {
+                    throw new Error(result.error || 'Erro ao fazer login.');
+                }
+                
+                // Salva o token no navegador para usar depois
+                localStorage.setItem('authToken', result.token);
+
+                // Redireciona para a página index.html na pasta paginasprincipal
+                window.location.href = '../../paginasprincipal/index.html'; // Changed this line
+
+            } catch (error) {
+                messageArea.innerText = error.message;
+                messageArea.style.color = 'red';
             }
-            
-            // Salva o token no navegador para usar depois
-            localStorage.setItem('authToken', result.token);
-
-            // Redireciona para o dashboard
-            window.location.href = 'dashboard.html';
-
-        } catch (error) {
-            messageArea.innerText = error.message;
-            messageArea.style.color = 'red';
-        }
-    });
+        });
+    } else {
+        console.error("Form element with selector '.form-container form' not found.");
+    }

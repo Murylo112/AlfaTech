@@ -1,4 +1,4 @@
-/* style.css (CORRIGIDO) */
+/* style.css (CORRIGIDO E ATUALIZADO) */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 :root {
@@ -15,13 +15,14 @@
     box-sizing: border-box;
 }
 
-/* --- MUDANÇA PRINCIPAL NO BODY --- */
-/* Removemos o 'display: flex' para que os elementos (header, main) se comportem normalmente, um abaixo do outro. */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     margin: 0;
+    min-height: 100vh; /* Garante que o body ocupe a altura total da viewport */
+    display: flex; /* Adicionado display flex para layout vertical */
+    flex-direction: column; /* Organiza os filhos (header, main) em coluna */
 }
 
 /* --- ESTILO PARA O HEADER COM A LOGO --- */
@@ -39,31 +40,34 @@ header img {
 }
 
 /* --- NOVO ESTILO PARA O MAIN --- */
-/* Transformamos o <main> em um container flex para centralizar o formulário,
-   deixando o <header> fora disso. */
 main {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px 20px; /* Espaçamento para não colar no header */
     flex-grow: 1; /* Faz o main ocupar o espaço restante */
-    min-height: calc(100vh - 150px); /* Garante que ocupe a tela, descontando o header e footer */
 }
 
-/* --- ESTILOS DO LOGIN (sem grandes mudanças) --- */
-.login-container {
+/* --- ESTILOS DO FORMULÁRIO (PARA LOGIN E CADASTRO) --- */
+.form-container { /* Renomeado de .login-container para .form-container */
     background-color: var(--card-bg);
     padding: 2rem 3rem;
     border-radius: 10px;
     box-shadow: var(--shadow);
     width: 100%;
-    max-width: 400px;
+    max-width: 400px; /* Largura máxima consistente */
     text-align: center;
 }
 
-.login-container h2 {
+.form-container h2 {
     margin-bottom: 1.5rem;
     color: var(--primary-color);
+}
+
+.form-description { /* Novo estilo para a descrição do formulário de cadastro */
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #666;
 }
 
 .input-group {
@@ -83,6 +87,7 @@ main {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Garante que o input use a mesma fonte */
 }
 
 button {
@@ -96,6 +101,7 @@ button {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-family: 'Poppins', sans-serif; /* Garante que o botão use a mesma fonte */
 }
 
 button:hover {
@@ -109,17 +115,17 @@ button:hover {
     font-weight: 600;
 }
 
-/* --- NOVO: Estilo para o link de cadastro --- */
-.cadastro-link {
+/* --- NOVO: Estilo para o link de cadastro/login (genérico) --- */
+.form-link { /* Renomeado de .cadastro-link para .form-link */
     margin-top: 1.5rem;
     font-size: 0.9rem;
 }
-.cadastro-link a {
+.form-link a {
     color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
 }
 
-.cadastro-link a:hover {
+.form-link a:hover {
     text-decoration: underline;
 }
