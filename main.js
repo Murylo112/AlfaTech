@@ -39,23 +39,26 @@ async function buscarEExibirProdutos() {
       return;
     }
 
-    // 2. CRIA O HTML PARA CADA PRODUTO
-    // Passa por cada produto retornado pelo servidor.
-    produtos.forEach(produto => {
-      // Cria o card do produto em formato de string HTML.
-      // Adicionamos verificações para caso a imagem ou descrição sejam nulas.
-      const produtoCard = `
-        <div class="produto-card">
-          <img src="${produto.imagem_url || 'caminho/para/imagem_padrao.jpg'}" alt="${produto.nome}">
-          <h3>${produto.nome}</h3>
-          <p>${produto.descricao || 'Sem descrição disponível.'}</p>
-          <span class="preco">R$ ${Number(produto.preco).toFixed(2)}</span>
-          <p>Estoque: ${produto.estoque}</p>
-        </div>
-      `;
-      // Adiciona o card do produto na div principal.
-      listaProdutosDiv.innerHTML += produtoCard;
-    });
+// main.js (alterar a criação do produtoCard)
+
+// ... dentro da função buscarEExibirProdutos(), no forEach ...
+
+produtos.forEach(produto => {
+    // Adicionamos a tag <a> envolvendo todo o card
+    const produtoCard = `
+        <a href="produto.html?id=${produto.id}" class="produto-link">
+            <div class="produto-card">
+                <img src="${produto.imagem_url || 'caminho/para/imagem_padrao.jpg'}" alt="${produto.nome}">
+                <h3>${produto.nome}</h3>
+                <p>${produto.descricao || 'Sem descrição disponível.'}</p>
+                <span class="preco">R$ ${Number(produto.preco).toFixed(2)}</span>
+                <p>Estoque: ${produto.estoque}</p>
+            </div>
+        </a>
+    `;
+    // Adiciona o card do produto na div principal.
+    listaProdutosDiv.innerHTML += produtoCard;
+});
 
   } catch (error) {
     // 3. TRATA POSSÍVEIS ERROS

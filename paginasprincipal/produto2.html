@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>AlfaTech</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="icon" href="IMAGEM/LOGO SITE.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="../IMAGEM/LOGO ALFATECH 3.png" alt="logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="produto.html">Produtos</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contato.html">Contato</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="produtos" class="section-produtos">
+            <h2>Nossos Produtos</h2>
+            <div class="slider-container">
+                <div class="slider">
+                    <div class="slider-item">
+                        <h3>Computadores Gamers</h3>
+                        <img src="../IMAGEM/computador_gamer_intel_core_i5_12400f_16gb_3200mhz_rgb_ssd_nvme_480gb_placa_de_video_rtx_4060_8gb_fo_20035_1_c6224943d82bb67ec5eef9f1a0468d4c.webp" alt="">
+                    </div>
+                    <div class="slider-item">
+                        <h3>Teclados Mecânicos</h3>
+                        <img src="../IMAGEM/teclado-hyperx-alloy-origins-core-rgb-tkl-abnt2-hx-kb7blx-br-01.webp" alt="">
+                    </div>
+                    <div class="slider-item">
+                        <h3>Monitores de ALTA qualidade</h3>
+                        <img src="../IMAGEM/monitor-samsung-ultra49.webp" alt="">
+                    </div>
+                </div>
+            </div>
+            <a href="../Secundarias/produtos.html"><button class="cta-btn">Ver Mais Produtos</button></a>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Loja de Informática. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+  .whatsapp-side-menu {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+  }
+
+  .menu-tab {
+    background-color: #25D366;
+    color: white;
+    padding: 15px 12px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    border-radius: 8px 0 0 8px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: bold;
+    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .menu-panel {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -350px;
+    width: 300px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: right 0.4s ease-in-out;
+    padding: 25px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: sans-serif;
+    border-radius: 12px; 
+  }
+
+  .menu-panel.open {
+    right: 80px;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: #888;
+    cursor: pointer;
+  }
+  .close-btn:hover {
+    color: #333;
+  }
+
+  .menu-panel img {
+    width: 80%;
+    max-width: 200px;
+    margin-top: 15px;
+    border: 5px solid #fff;
+    border-radius: 8px;
+  }
+
+  .menu-panel p {
+    margin: 20px 0;
+    color: #555;
+    font-size: 15px;
+  }
+
+  .whatsapp-link-button {
+    display: inline-block;
+    background-color: #25D366;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  .whatsapp-link-button:hover {
+    background-color: #128C7E;
+  }
+</style>
+
+<div class="whatsapp-side-menu">
+  
+  <div class="menu-tab" id="open-whatsapp-menu">
+    <i class="fa fa-whatsapp" style="font-size: 24px;"></i>
+    <span>WhatsApp</span>
+  </div>
+
+  <div class="menu-panel" id="whatsapp-panel">
+    <span class="close-btn" id="close-whatsapp-menu">&times;</span>
+    
+    <h4>Contato via WhatsApp</h4>
+    
+    <img src="../IMAGEM/qrcode (1).png" alt="QR Code para contato no WhatsApp">
+    
+    <p>Aponte a câmera do seu celular para o QR Code ou clique no botão abaixo para iniciar a conversa.</p>
+    
+    <a href="https://www.contate.me/5544999947917" target="_blank" class="whatsapp-link-button">
+      Conversar Agora
+    </a>
+  </div>
+</div>
+
+<script>
+  const openButton = document.getElementById('open-whatsapp-menu');
+  const closeButton = document.getElementById('close-whatsapp-menu');
+  const panel = document.getElementById('whatsapp-panel');
+
+  openButton.addEventListener('click', function() {
+    panel.classList.toggle('open');
+  });
+
+  closeButton.addEventListener('click', function() {
+    panel.classList.remove('open');
+  });
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</body>
+</html>

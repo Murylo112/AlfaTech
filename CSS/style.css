@@ -449,3 +449,8 @@ footer p {
     flex-direction: column; /* Em telas menores, tudo fica em uma única coluna */
   }
 }
+
+.produto-link {
+    text-decoration: none;
+    color: inherit; /* Herda a cor do texto do elemento pai */
+}
