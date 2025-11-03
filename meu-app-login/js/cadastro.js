@@ -1,42 +1,40 @@
-// cadastro.js
-    const form = document.getElementById('form-cadastro'); // Corrected ID to 'form-cadastro'
+// cadastro.js (MODIFICADO)
+const form = document.getElementById('form-cadastro');
 
-    // Add a check to ensure the form element was found
-    if (form) {
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();
+if (form) {
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const senha = document.getElementById('senha').value;
-            const confirmarSenha = document.getElementById('confirmar-senha').value;
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+        const confirmarSenha = document.getElementById('confirmar-senha').value;
 
-            if (senha !== confirmarSenha) {
-                alert('As senhas não coincidem!');
-                return;
+        if (senha !== confirmarSenha) {
+            alert('As senhas não coincidem!');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:3000/cadastro', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nome, email, senha })
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Erro ao cadastrar.');
             }
 
-            try {
-                const response = await fetch('http://localhost:3000/cadastro', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nome, email, senha })
-                });
+            // MODIFICADO: Redireciona para a página "Verifique seu E-mail"
+            window.location.href = 'verifique-email.html';
 
-                const result = await response.json();
-
-                if (!response.ok) {
-                    // Se o servidor retornar um erro (ex: email duplicado)
-                    throw new Error(result.error || 'Erro ao cadastrar.');
-                }
-
-                alert('Cadastro realizado com sucesso!');
-                window.location.href = 'login.html'; // Redireciona para a página de login
-
-            } catch (error) {
-                alert(error.message);
-            }
-        });
-    } else {
-        console.error("Form element with ID 'form-cadastro' not found.");
-    }
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+} else {
+    console.error("Form element with ID 'form-cadastro' not found.");
+}
