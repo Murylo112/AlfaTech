@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlfaTech</title>
+    <title>Hardware - AlfaTech</title>
     <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body>
@@ -13,40 +12,44 @@
         </div>
         <nav>
             <ul>
-                <li><a href="produto.html">Produtos</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="contato.html">Contato</a></li>
-               
+                <li><a href="produtos.html">Voltar</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="pcs-montados" class="section-home">
-            <h2>Gabinetes </h2>
-            <button><a href="gabinetes.html">Ver mais</a></button>
-        </section>
+        <h1 class="titulo-secao">Escolha o Componente</h1>
         
-        <section id="pcs-montados" class="section-home">
-            <h2>Placas-Mãe</h2>
-            <button><a href="placa-mae.html">Ver mais</a></button>
-        </section>
+        <!-- Lista de Botões para as categorias -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 20px;">
+            
+            <section class="section-home" style="width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center;">
+                <h2>Processadores</h2>
+                <a href="processadores.html"><button>Ver Lista</button></a>
+            </section>
 
-        <section id="pcs-montados" class="section-home">
-            <h2>Processadores</h2>
-            <button><a href="processadores.html">Ver mais</a></button>
-        </section>
+            <section class="section-home" style="width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center;">
+                <h2>Placas de Vídeo</h2>
+                <a href="placadevideo.html"><button>Ver Lista</button></a>
+            </section>
 
-        <section id="pcs-montados" class="section-home">
-            <h2>Placas de video</h2>
-            <button><a href="placadevideo.html">Ver mais</a></button>
-        </section>
+            <section class="section-home" style="width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center;">
+                <h2>Placas-Mãe</h2>
+                <a href="placa-mae.html"><button>Ver Lista</button></a>
+            </section>
 
-       
+            <section class="section-home" style="width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center;">
+                <h2>Gabinetes</h2>
+                <a href="gabinetes.html"><button>Ver Lista</button></a>
+            </section>
+
+            <section class="section-home" style="width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center;">
+                <h2>Armazenamento</h2>
+                <a href="armazenamento.html"><button>Ver Lista</button></a>
+            </section>
+        </div>
     </main>
     <footer>
-        <p>&copy; 2025 Loja de Informática. Todos os direitos reservados.</p>
+        <p>&copy; 2025 AlfaTech.</p>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </body>
 </html>

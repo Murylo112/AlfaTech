@@ -3,59 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Loja de Informática</title>
-    <!-- Certifique-se de que o caminho para o style.css está correto -->
-    <link rel="stylesheet" href="../style.css"> 
+    <title>Login - AlfaTech</title>
+    <link rel="stylesheet" href="../../CSS/style.css"> 
 </head>
 <body>
-    
     <header>
-        <!-- O caminho da imagem deve estar correto em relação à pasta do seu projeto.
-             Este caminho assume que a pasta 'IMAGEM' está na raiz do projeto. -->
-        <img src="../../IMAGEM/LOGO ALFATECH 3.png" alt="Logo da Alfatech">
+        <div class="logo">
+            <a href="index.html"><img src="../IMAGEM/LOGO ALFATECH 3.png" alt="logo"></a>
+        </div>
     </header>
 
     <main>
-        <div class="form-container"> <!-- Alterado de .login-container para .form-container para ser mais genérico -->
-            <form action="/login" method="POST">
-                <h2>Login do Painel</h2>
-
-                <div id="message-area" class="error"></div>
-                
-                <div class="input-group">
-                    <!-- ATENÇÃO: Mudado para 'email' para bater com o nosso servidor (app.js) -->
+        <div class="login-container" style="max-width: 400px; margin: 50px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <h2 style="text-align: center;">Login</h2>
+            <!-- Adicione o id="form-login" -->
+                <form id="form-login">
+                    <!-- O resto dos inputs já está correto -->
+                    ...
+                </form>
+                <!-- Importe o main.js no final do body -->
+                <script src="../main.js"></script>
+                <div style="margin-bottom: 15px;">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" required style="width: 100%; padding: 10px; margin-top: 5px;">
                 </div>
-                
-                <div class="input-group">
+                <div style="margin-bottom: 15px;">
                     <label for="password">Senha</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" required style="width: 100%; padding: 10px; margin-top: 5px;">
                 </div>
-                
-                <button type="submit">Entrar</button> 
-
-                <!-- CORRIGIDO: Link de cadastro fora do 'input-group' para melhor estrutura -->
-                <p class="form-link"> <!-- Alterado de .cadastro-link para .form-link para ser genérico -->
-                    Ainda não tem conta? <a href="cadastro.html">Crie uma aqui.</a>
-                </p>
+                <button type="submit" style="width: 100%; cursor: pointer;">Entrar</button>
             </form>
+            <p style="text-align: center; margin-top: 10px;">
+                <a href="cadastro.html">Criar conta</a>
+            </p>
         </div>
     </main>
     
+    <!-- Script básico para envio (você precisará implementar a lógica no server.js) -->
     <script>
-        // Script para mostrar mensagens de erro/sucesso vindas do servidor via URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const messageDiv = document.getElementById('message-area');
-
-        if (urlParams.get('error')) {
-            messageDiv.innerText = 'Email ou senha inválidos!';
-        } else if (urlParams.get('success') === 'registered') {
-            messageDiv.innerText = 'Cadastro realizado com sucesso! Faça o login.';
-            messageDiv.style.color = 'green';
-        }
+        document.getElementById('form-login').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            alert("Funcionalidade de login deve ser implementada no server.js!");
+        });
     </script>
-
-    <script src="../js/login.js"></script>
 </body>
 </html>

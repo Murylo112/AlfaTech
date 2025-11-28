@@ -450,7 +450,11 @@ footer p {
   }
 }
 
-.produto-link {
-    text-decoration: none;
-    color: inherit; /* Herda a cor do texto do elemento pai */
+.carregando {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #555;
+    width: 100%;
+    grid-column: 1 / -1; /* Faz o texto ocupar toda a largura da grid */
+    padding: 50px;
 }

@@ -1,173 +1,141 @@
 // main.js
 
-// Pega a referência da div onde os produtos serão exibidos.
-// É uma boa prática fazer isso uma vez só, no início do script.
-const listaProdutosDiv = document.getElementById('lista-produtos');
+document.addEventListener('DOMContentLoaded', () => {
+    const gridProdutos = document.querySelector('.produtos-grid');
 
-/**
- * Função principal que busca os produtos do nosso servidor Node.js
- * e os exibe na tela.
- */
-async function buscarEExibirProdutos() {
-  // Verificamos se o elemento 'lista-produtos' realmente existe no HTML.
-  if (!listaProdutosDiv) {
-    console.error('Erro: Elemento com id "lista-produtos" não foi encontrado na página.');
-    return;
-  }
+    // Se não tiver grid de produtos na página, para o script (ex: página de contato)
+    if (!gridProdutos) return;
 
-  try {
-    // 1. FAZ A CHAMADA PARA O SERVIDOR
-    // Faz a chamada para a rota '/produtos' do nosso servidor Node.js.
-    // Este código não se importa se o servidor usa MongoDB, Supabase ou outro DB.
-    const response = await fetch('http://localhost:3000/produtos');
+    // Verifica se o HTML tem um filtro específico (data-categoria)
+    // Ex: <div class="produtos-grid" data-categoria="processador">
+    const categoriaFiltro = gridProdutos.getAttribute('data-categoria');
 
-    // Verifica se a resposta do servidor foi bem-sucedida (status 200-299)
-    if (!response.ok) {
-      // Se não foi, lança um erro para ser pego pelo bloco 'catch'.
-      throw new Error(`Erro do servidor: ${response.status}`);
-    }
-
-    // Converte a resposta do servidor de JSON para um objeto/array JavaScript.
-    const produtos = await response.json();
-
-    // Limpa a lista antes de adicionar os novos itens, para evitar duplicatas.
-    listaProdutosDiv.innerHTML = '';
-
-    // Verifica se o array de produtos está vazio.
-    if (produtos.length === 0) {
-      listaProdutosDiv.innerHTML = '<p>Nenhum produto cadastrado no momento.</p>';
-      return;
-    }
-
-// main.js (alterar a criação do produtoCard)
-
-// ... dentro da função buscarEExibirProdutos(), no forEach ...
-
-produtos.forEach(produto => {
-    // Adicionamos a tag <a> envolvendo todo o card
-    const produtoCard = `
-        <a href="produto.html?id=${produto.id}" class="produto-link">
-            <div class="produto-card">
-                <img src="${produto.imagem_url || 'caminho/para/imagem_padrao.jpg'}" alt="${produto.nome}">
-                <h3>${produto.nome}</h3>
-                <p>${produto.descricao || 'Sem descrição disponível.'}</p>
-                <span class="preco">R$ ${Number(produto.preco).toFixed(2)}</span>
-                <p>Estoque: ${produto.estoque}</p>
-            </div>
-        </a>
-    `;
-    // Adiciona o card do produto na div principal.
-    listaProdutosDiv.innerHTML += produtoCard;
+    buscarProdutos(categoriaFiltro);
 });
 
-  } catch (error) {
-    // 3. TRATA POSSÍVEIS ERROS
-    // Se ocorrer qualquer erro (servidor offline, problema de rede, etc.),
-    // ele será capturado aqui.
-    console.error('Falha ao buscar produtos:', error);
-    // Exibe uma mensagem de erro amigável para o usuário na página.
-    listaProdutosDiv.innerHTML = `<p style="color: red;">Ocorreu um erro ao carregar os produtos. Por favor, tente novamente mais tarde.</p>`;
-  }
-}
+async function buscarProdutos(categoria = null) {
+    const gridProdutos = document.querySelector('.produtos-grid');
+    gridProdutos.innerHTML = '<p class="carregando">Carregando ofertas...</p>';
 
-// Chama a função para carregar os produtos assim que a página e o script forem lidos.
-buscarEExibirProdutos();
-
-// main.js
-
-// Referências aos elementos do HTML
-const formCadastro = document.getElementById('form-cadastro');
-const mensagemDiv = document.getElementById('mensagem');
-const listaUsuariosDiv = document.getElementById('lista-usuarios'); // Para listar os usuários
-
-/**
- * Função para lidar com o envio do formulário de cadastro.
- */
-async function cadastrarUsuario(event) {
-  // 1. Impede o comportamento padrão do formulário (que é recarregar a página)
-  event.preventDefault();
-
-  // 2. Pega os valores dos campos do formulário
-  const nome = document.getElementById('nome').value;
-  const email = document.getElementById('email').value;
-  const idade = document.getElementById('idade').value;
-
-  // 3. Cria um objeto com os dados do usuário
-  const dadosUsuario = {
-    nome: nome,
-    email: email,
-    idade: Number(idade) // Converte a idade para número
-  };
-
-  try {
-    // 4. Envia os dados para o servidor (backend) usando fetch
-    const response = await fetch('http://localhost:3000/usuarios', {
-      method: 'POST', // Método da requisição
-      headers: {
-        'Content-Type': 'application/json' // Informa que estamos enviando dados em JSON
-      },
-      body: JSON.stringify(dadosUsuario) // Converte o objeto JavaScript para uma string JSON
-    });
-
-    // 5. Trata a resposta do servidor
-    if (!response.ok) {
-      // Se a resposta não for OK, lança um erro
-      throw new Error('Erro ao cadastrar usuário: ' + response.statusText);
-    }
-
-    const usuarioSalvo = await response.json();
-
-    // Mostra uma mensagem de sucesso
-    mensagemDiv.innerHTML = `<p style="color: green;">Usuário "${usuarioSalvo.nome}" cadastrado com sucesso!</p>`;
-    formCadastro.reset(); // Limpa o formulário
-
-    // Opcional: Atualiza a lista de usuários na tela
-    buscarEExibirUsuarios();
-
-  } catch (error) {
-    console.error('Falha no cadastro:', error);
-    mensagemDiv.innerHTML = `<p style="color: red;">Ocorreu um erro ao cadastrar. Tente novamente.</p>`;
-  }
-}
-
-/**
- * Função para buscar e exibir os usuários (similar à sua de produtos).
- */
-async function buscarEExibirUsuarios() {
     try {
-        const response = await fetch('http://localhost:3000/usuarios');
-        if (!response.ok) {
-            throw new Error('Erro ao buscar usuários');
+        // Monta a URL. Se tiver categoria, adiciona na busca.
+        let url = 'http://localhost:3000/produtos';
+        if (categoria) {
+            url += `?categoria=${categoria}`;
         }
-        const usuarios = await response.json();
-        
-        listaUsuariosDiv.innerHTML = ''; // Limpa a lista
-        
-        if (usuarios.length === 0) {
-            listaUsuariosDiv.innerHTML = '<p>Nenhum usuário cadastrado.</p>';
+
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Erro ao conectar com o servidor');
+
+        const produtos = await response.json();
+
+        // Limpa o "Carregando..."
+        gridProdutos.innerHTML = '';
+
+        if (produtos.length === 0) {
+            gridProdutos.innerHTML = '<p>Nenhum produto encontrado nesta categoria.</p>';
             return;
         }
 
-        usuarios.forEach(usuario => {
-            listaUsuariosDiv.innerHTML += `
-                <div class="usuario-card">
-                    <h4>${usuario.nome}</h4>
-                    <p>Email: ${usuario.email}</p>
-                    <p>Idade: ${usuario.idade || 'Não informada'}</p>
-                </div>
+        // Gera os cards
+        produtos.forEach(produto => {
+            const card = document.createElement('div');
+            card.classList.add('produto-card');
+
+            // Garante que o preço seja um número
+            const preco = parseFloat(produto.preco).toFixed(2).replace('.', ',');
+
+            card.innerHTML = `
+                <img src="${produto.imagem_url || '../IMAGEM/sem-imagem.png'}" alt="${produto.nome}">
+                <h3>${produto.nome}</h3>
+                <p class="specs">${produto.descricao || ''}</p>
+                <span class="preco">R$ ${preco}</span>
+                <a href="#" class="botao-detalhes">Ver Detalhes</a>
             `;
+            gridProdutos.appendChild(card);
         });
 
     } catch (error) {
-        console.error('Falha ao buscar usuários:', error);
-        listaUsuariosDiv.innerHTML = `<p style="color: red;">Erro ao carregar a lista de usuários.</p>`;
+        console.error(error);
+        gridProdutos.innerHTML = '<p style="color:red">Erro ao carregar produtos. Verifique se o servidor está rodando.</p>';
     }
 }
+// --- LÓGICA DE CADASTRO ---
+const formCadastro = document.getElementById('form-cadastro'); // Precisamos adicionar esse ID no HTML
+if (formCadastro) {
+    formCadastro.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+        const confirmSenha = document.getElementById('confirmar-senha').value;
 
+        if (senha !== confirmSenha) {
+            alert("As senhas não coincidem!");
+            return;
+        }
 
-// Adiciona um "ouvinte" para o evento 'submit' do formulário.
-// Quando o formulário for enviado, a função 'cadastrarUsuario' será chamada.
-formCadastro.addEventListener('submit', cadastrarUsuario);
+        try {
+            const response = await fetch('http://localhost:3000/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nome, email, password: senha })
+            });
 
-// Chama a função para carregar os usuários assim que a página carregar
-buscarEExibirUsuarios();
+            const result = await response.json();
+
+            if (response.ok) {
+                alert("Cadastro realizado com sucesso! Faça login.");
+                window.location.href = "login.html";
+            } else {
+                alert("Erro: " + result.error);
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Erro ao conectar com o servidor.");
+        }
+    });
+}
+
+// --- LÓGICA DE LOGIN ---
+const formLogin = document.getElementById('form-login'); // Precisamos adicionar esse ID no HTML
+if (formLogin) {
+    formLogin.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('password').value;
+
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password: senha })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                // Salva os dados no navegador para usar depois
+                localStorage.setItem('user_token', result.session.access_token);
+                localStorage.setItem('user_profile', JSON.stringify(result.profile));
+
+                // Verifica se é ADM
+                if (result.profile.is_admin) {
+                    alert(`Bem-vindo ADM, ${result.profile.nome}!`);
+                    // window.location.href = "admin-dashboard.html"; // Futura página de ADM
+                    window.location.href = "index.html";
+                } else {
+                    alert(`Bem-vindo, ${result.profile.nome}!`);
+                    window.location.href = "index.html";
+                }
+            } else {
+                alert("Erro: " + result.error);
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Erro ao tentar fazer login.");
+        }
+    });
+}
